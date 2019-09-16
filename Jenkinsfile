@@ -9,7 +9,7 @@ pipeline{
     	stage('DockerBuild'){
     	    steps {
     		    sh "docker build -t my-python-app:v${BUILD_NUMBER} ."
-    		    sh 'docker stop \$(sudo docker ps -aq) || echo "No containers to stop!!!"'
+    		    sh 'docker stop \$(sudo docker ps -aq) || echo "No containers to stop!!"'
     		    sh 'docker rm \$(sudo docker ps -aq) || echo "No containers to delete!!"'
     		    sh "docker run -itd  -p 8081:8080 --name my-running-app${BUILD_NUMBER} my-python-app:v${BUILD_NUMBER}"
     	    }
